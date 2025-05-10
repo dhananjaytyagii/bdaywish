@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import script font */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 260 84% 75%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 296 70% 93%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 270 76% 93%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 253 84% 75%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23D6BCFA' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M0 100l100-100H0v100z'/%3E%3Cpath opacity='.5' d='M100 100L0 0h100v100z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  
+  /* Add font family definition */
+  .font-script {
+    font-family: 'Dancing Script', cursive;
+  }
+}
+
+.notebook-page {
+  background-color: white;
+  background-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 98%,
+      rgba(155, 135, 245, 0.2) 98%,
+      rgba(155, 135, 245, 0.2) 100%
+    ), linear-gradient(transparent 0%, transparent 98%, rgba(155, 135, 245, 0.2) 98%, rgba(155, 135, 245, 0.2) 100%);
+  background-size: 20px 20px;
+  position: relative;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(155, 135, 245, 0.3);
+  overflow: hidden;
+}
+
+.notebook-page::before {
+  content: "";
+  position: absolute;
+  left: 30px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: rgba(155, 135, 245, 0.3);
+}
+
+/* Add decorative elements to notebook */
+.notebook-page::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 30px;
+  background: linear-gradient(to bottom, rgba(155, 135, 245, 0.1), transparent);
+}
+
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  background-color: #9b87f5;
+  border-radius: 50%;
+  animation: bounce 1.4s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1.0);
+  }
+}
+
+.blinking-cursor::after {
+  content: "|";
+  animation: blink 1s step-end infinite;
+  opacity: 1;
+}
+
+@keyframes blink {
+  from,
+  to {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.perspective-container {
+  perspective: 1000px;
+}
+
+/* Enhance image effects */
+.border-6 {
+  border-width: 6px;
+}
+
+.shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 640px) {
+  .notebook-page {
+    padding: 1rem;
+    min-height: 80vh;
+  }
+
+  .notebook-page::before {
+    left: 15px;
+  }
+}
